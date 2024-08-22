@@ -35,7 +35,7 @@ public class ExampleMovement extends LinearOpMode {
         leftClaw  = hardwareMap.get(Servo.class, "leftClawServo");
 
         // If left side motors were mounted backwards ...
-        // Allows similar behavior of motors to inputs regardless of motor orientation
+        // Allows similar behavior of motors to inputs by accounting for motor orientation
         leftBackDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -85,7 +85,10 @@ public class ExampleMovement extends LinearOpMode {
                 leftClaw.setPosition(0);
             }
 
+            // Return information back to drivers
+            telemetry.addData("Drivetrain power: ", movementInput);
             telemetry.update();
+
         }
     }
 }
